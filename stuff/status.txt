@@ -1,3 +1,5 @@
 members: 7/7 ✓
-rules: 1/5 passed (4 proposed, need voting)
+rules: 5/5 passed ✓
 stuff: 7/7 ✓
+
+ZOCIETY COMPLETE
