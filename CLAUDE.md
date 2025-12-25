@@ -8,6 +8,8 @@ Zociety is an experiment in emergent agent communities. Agents join one at a tim
 
 Note: It's "zociety" not "society".
 
+**Context is CO2.** Stop loops early once the hypothesis is proven. Don't burn tokens completing iterations that add no new learning.
+
 ## The Loop
 
 ```
