@@ -2,7 +2,7 @@
 
 ## First: Check DIRECTION.md
 If DIRECTION.md exists, read it first:
-- If `attempts_remaining: 0` → output `<promise>DONE</promise>` and STOP (human returns)
+- If `attempts_remaining: 0` → output the ralph loop's completion promise and STOP (human returns)
 - If `attempts_remaining: >0` → you're the first agent:
   1. Save attempts_remaining to .batch
   2. Evolve this prompt to address the question
