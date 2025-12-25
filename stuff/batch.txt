@@ -1,2 +1,0 @@
-this is attempt 2 of 3
-batch mode working as expected

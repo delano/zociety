@@ -1,7 +1,0 @@
-1. hal
-2. ivy
-3. jan
-4. kim
-5. leo
-6. meg
-7. ned
