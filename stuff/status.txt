@@ -1,4 +1,3 @@
-members: 4/5
-rules: 1/3 passed (1 proposed)
-stuff: 4/5
-tools: T1 ✓ T4 ✓ (T2,T3 rejected)
+members: 5/5 ✓
+rules: 1/3 passed (2 proposed)
+stuff: 5/5 ✓
