@@ -1,0 +1,4 @@
+Lessons from previous revisions:
+- First agent MUST evolve prompt when DIRECTION.md exists
+- Context is CO2 - stop early when hypothesis proven
+- Always run heap-death on completion (rev5 fix)
