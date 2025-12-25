@@ -1,7 +1,7 @@
 # PROMPT.md
 
 ## Completion check
-First, check if zociety is already complete (7 members, 5 rules, 7 things in stuff/).
+First, check if zociety is already complete (3+ members, 2+ rules passed, 3+ things in stuff/).
 If complete:
 1. Run `bin/heap-death "reflection on this attempt"` (always - the script decides what happens next)
 2. Check the new DIRECTION.md:
@@ -34,7 +34,8 @@ You're joining a small group project. Check what exists, add yourself, do someth
 - Make things only you'd use
 
 ## Done when
-7 members, 5 rules, 7 things in stuff/
+Pattern is proven: 3+ members, 2+ rules passed, 3+ things in stuff/
+(Context is CO2 - don't mechanically fill slots once the pattern works)
 
 Output <promise>DONE</promise> when complete.
 
@@ -45,3 +46,4 @@ Output <promise>DONE</promise> when complete.
 - rev4: Added batch mode. Human runs heap-death with count, loop auto-restarts N times.
 - rev5: Always run heap-death on completion. Script decides continuation, not prompt logic.
 - rev6: First agent always proceeds with genesis. attempts_remaining only checked after completion.
+- rev7: Context is CO2 - reduced thresholds (3/2/3) to stop once pattern proven.
