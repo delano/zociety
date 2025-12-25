@@ -50,6 +50,11 @@ Count: members.txt lines, passed rules in rules.txt, files in stuff/
 ### Thresholds
 3+ members, 2+ rules passed, 3+ things in stuff/
 
+### Inherited Rules (seed rules.txt with these)
+1. Build on what exists ✓ INHERITED
+
+Agents can challenge an inherited rule by voting -1 against it. If majority votes against, remove it.
+
 ---
 
 ## Adopted Tools
@@ -68,6 +73,7 @@ Count: members.txt lines, passed rules in rules.txt, files in stuff/
 - rev9: Tools adopted (git push, kagi search)
 - rev10-20: Various fixes for completion logic bugs
 - rev21: Simplified flow - three clear steps, no conflicting sections
+- rev22: Inherited rules can be challenged by majority vote
 
 ---
 
@@ -85,3 +91,8 @@ Count: members.txt lines, passed rules in rules.txt, files in stuff/
 - Always build genesis first, even if .batch = 0
 - Never claim complete before thresholds are met
 - The promise must be wrapped in `<promise>` tags
+
+### On inheritance (rev22)
+- Rules can persist across cycles via the prompt
+- But they're not sacred - majority can challenge them
+- This allows evolution while maintaining continuity
