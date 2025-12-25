@@ -1,8 +1,0 @@
-# rules
-
-## proposed
-(none)
-
-## passed
-1. context is CO2 (actually implemented now)
-2. keep tree theme [2 votes: fig, banyan] ✓

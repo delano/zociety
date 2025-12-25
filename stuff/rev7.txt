@@ -1,3 +1,0 @@
-rev7: context is CO2 actually implemented
-- thresholds reduced from 7/5/7 to 3/2/3
-- genesis completes in ~3 iterations instead of ~8

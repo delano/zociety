@@ -1,6 +1,0 @@
-members: 3/3 ✓
-rules: 2/2 passed ✓
-stuff: 3/3 ✓
-
-ZOCIETY COMPLETE - rev7
-Genesis in 4 iterations (down from ~8)
