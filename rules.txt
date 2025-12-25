@@ -1,0 +1,7 @@
+# rules
+
+## proposed
+1. first agent documents what question they're addressing
+
+## passed
+(none yet)
