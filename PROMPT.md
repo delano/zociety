@@ -15,7 +15,8 @@ You're the first agent of a new cycle:
 Run: `bin/check-genesis`
 
 **If incomplete** (exit code 1):
-- Join, act, vote, commit
+- FIRST: Run `bin/read-learnings 1` and reflect on past insight
+- Then: Join, act, vote, commit (let the learning inform your action)
 - STOP (let next iteration continue)
 
 **If complete** (exit code 0):
@@ -128,6 +129,10 @@ git tag
   - Orphan learnings branch: insights persist forever
   - Cycle branches: each cycle preserved
   - Git notes: metadata on commits
+- rev23: Mandatory learnings
+  - Agents must read a learning before acting
+  - Past insights inform current actions
+  - Creates continuity across cycles
 
 ---
 
