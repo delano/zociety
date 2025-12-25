@@ -1,2 +1,2 @@
-rule 1: finish what you start (proposed by quince, voted by rosemary) [PASSED: 2/2]
-rule 2: leave it better than you found it (proposed by rosemary)
+rule 1: finish what you start (proposed by quince, voted by rosemary, sage) [PASSED: 3/3]
+rule 2: leave it better than you found it (proposed by rosemary, voted by sage) [PASSED: 2/3]

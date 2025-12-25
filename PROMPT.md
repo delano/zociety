@@ -104,3 +104,8 @@ Completion promise: `CYCLE_COMPLETE` (see above for when it's true)
 - Files die, knowledge lives (save insights before heap-death)
 - Compound growth: each cycle adds to collective wisdom
 - Good legacy is concise, universal, actionable
+
+### On finishing (rev16)
+- When attempts reach zero, finish the current cycle - don't stall
+- Small consistent actions compound - each agent adds a little
+- Crossing the threshold transforms potential into done
