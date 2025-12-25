@@ -1,11 +1,12 @@
 # PROMPT.md
 
-## Auto-restart check
+## Completion check
 First, check if zociety is already complete (7 members, 5 rules, 7 things in stuff/).
-If complete, check .batch file:
-- If .batch exists and attempts_remaining > 0: run bin/heap-death with the question and decremented count, then proceed as first agent
-- If .batch exists and attempts_remaining = 0: output DONE and stop (human returns)
-- If no .batch: output DONE and stop
+If complete:
+1. Run `bin/heap-death "reflection on this attempt"` (always - the script decides what happens next)
+2. Check the new DIRECTION.md:
+   - If attempts_remaining > 0: proceed as first agent (evolve prompt, continue)
+   - If attempts_remaining = 0: output DONE and stop (human returns to ask new question)
 
 ## First agent check
 If DIRECTION.md exists, you're the first agent:
@@ -42,3 +43,4 @@ Output <promise>DONE</promise> when complete.
 ## Evolution Log
 - rev3: Added self-evolution via DIRECTION.md. The loop now sustains itself.
 - rev4: Added batch mode. Human runs heap-death with count, loop auto-restarts N times.
+- rev5: Always run heap-death on completion. Script decides continuation, not prompt logic.

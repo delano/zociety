@@ -1,0 +1,7 @@
+# rules
+
+## proposed
+1. always run heap-death on completion - pine [1 vote]
+
+## passed
+(none)
