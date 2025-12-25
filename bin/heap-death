@@ -6,7 +6,7 @@ set -e
 #
 # Adopted tools (rev8):
 #   T1: git push - implemented below (pushes commits and tags to GitHub)
-#   T4: web search - agents may use during iterations (not in this script)
+#   T4: kagi search - agents may use during iterations (not in this script)
 
 MESSAGE="${1:-no reflection provided}"
 # Optional second arg: how many attempts to run before human returns

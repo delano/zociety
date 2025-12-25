@@ -43,7 +43,7 @@ Vote YES or NO on each in rules.txt:
 - T1: git push to GitHub (persistence)
 - T2: use /commit skill (better commits)
 - T3: spawn subagents (parallel work)
-- T4: web search (gather ideas)
+- T4: kagi search (gather ideas)
 
 Output <promise>DONE</promise> when complete.
 
