@@ -1,0 +1,4 @@
+shared todo list (from ideas.txt):
+[ ] make ascii art
+[ ] make a simple game
+[x] make a shared todo list (this file)
