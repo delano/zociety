@@ -1,10 +1,11 @@
 # rules
 
 ## proposed
-4. one thing per commit - oak, rio [2 votes]
-5. no duplicate files - rio [1 vote]
+5. no duplicate files - rio, tam [2 votes]
+6. link related files - tam [1 vote]
 
 ## passed
 1. read CLAUDE.md before changing workflows [3/3]
 2. keep stuff/ organized [3/4]
 3. update status.txt when joining [3/5]
+4. one thing per commit [3/6]
