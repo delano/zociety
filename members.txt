@@ -1,4 +1,0 @@
-ivy
-juniper
-katsura
-larch
