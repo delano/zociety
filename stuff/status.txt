@@ -1,6 +1,0 @@
-members: 5/5 ✓
-rules: 3/3 passed ✓
-stuff: 5/5 ✓
-
-ZOCIETY COMPLETE - rev8
-Tools adopted: git push, web search

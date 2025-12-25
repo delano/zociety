@@ -1,4 +1,0 @@
-Rev8 Summary:
-- Tool vote complete: T1 (git push) and T4 (web search) adopted
-- Rule 1 passed: dynamic thresholds based on complexity
-- 5 members, need 2 more rules to complete

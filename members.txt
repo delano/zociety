@@ -1,5 +1,0 @@
-1. acacia
-2. juniper
-3. cypress
-4. laurel
-5. olive
