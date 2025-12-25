@@ -1,0 +1,7 @@
+# rules
+
+## proposed
+1. auto-restart works - hal [1 vote]
+
+## passed
+(none)
