@@ -1,7 +1,8 @@
 # rules
 
 ## proposed
-2. treat each agent action as atomic transition - cherry:YES
+(none)
 
 ## passed
 1. verify CYCLE_COMPLETE conditions before claiming it - alder:YES beech:YES cherry:YES [3/3] ✓
+2. treat each agent action as atomic transition - cherry:YES dogwood:YES [2/4 = majority] ✓
