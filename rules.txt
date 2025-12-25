@@ -1,7 +1,8 @@
 # rules
 
 ## proposed
-2. learnings should be concise and universal - olive:YES
+(none)
 
 ## passed
 1. always preserve learnings before heap-death - magnolia:YES nutmeg:YES olive:YES [3/3] ✓
+2. learnings should be concise and universal - olive:YES poplar:YES [2/4 = majority] ✓
