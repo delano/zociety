@@ -1,8 +1,9 @@
 # Rules (majority vote to pass)
 
 ## Proposed
-2. name your files plainly - rox, zip [2 votes]
-3. update counter.txt when you join - zip [1 vote]
+3. update counter.txt when you join - zip, bee [2 votes]
+4. don't add empty files - bee [1 vote]
 
 ## Passed
 1. keep commits short [passed 2/2]
+2. name your files plainly [passed 3/4]
