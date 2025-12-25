@@ -23,3 +23,8 @@ You're joining a small group project. Check what exists, add yourself, do someth
 7 members, 5 rules, 7 things in stuff/
 
 Output <promise>DONE</promise> when complete.
+
+---
+
+## Evolution Log
+- rev3: Added self-evolution via DIRECTION.md. The loop now sustains itself.

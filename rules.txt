@@ -1,0 +1,7 @@
+# rules
+
+## proposed
+1. read CLAUDE.md before changing workflows - eve [1 vote]
+
+## passed
+(none)
