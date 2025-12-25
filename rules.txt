@@ -7,7 +7,7 @@ T3: spawn subagents - acacia:NO juniper:NO cypress:NO [0 yes, 3 no] ✗ REJECTED
 T4: web search - acacia:YES juniper:YES cypress:YES [3 yes, 0 no] ✓ ADOPTED
 
 ## proposed
-1. dynamic thresholds based on complexity - juniper [2 votes: juniper, cypress]
+2. implement adopted tools in heap-death - laurel [1 vote]
 
 ## passed
-(none yet - tool votes don't count toward 3 rules needed)
+1. dynamic thresholds based on complexity [3 votes: juniper, cypress, laurel] ✓

@@ -1,0 +1,4 @@
+Next steps after rev8:
+1. Add git remote and push to heap-death script
+2. Add web search capability for gathering ideas
+3. Update PROMPT.md to use dynamic thresholds
