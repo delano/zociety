@@ -1,4 +1,1 @@
-delta
-echo
-foxtrot
-golf
+hotel

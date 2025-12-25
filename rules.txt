@@ -1,2 +1,1 @@
-1. Build on what exists (delta: +1, echo: +1) ✓ PASSED
-2. Complete what you start (foxtrot: +1, golf: +1) ✓ PASSED
+1. Build on what exists ✓ INHERITED
