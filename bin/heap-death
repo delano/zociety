@@ -3,6 +3,10 @@ set -e
 
 # heap-death: Archive current iteration, clear slate for next
 # Usage: bin/heap-death "What question drives the next iteration?"
+#
+# Adopted tools (rev8):
+#   T1: git push - implemented below (pushes commits and tags to GitHub)
+#   T4: web search - agents may use during iterations (not in this script)
 
 MESSAGE="${1:-no reflection provided}"
 # Optional second arg: how many attempts to run before human returns
@@ -45,6 +49,13 @@ echo ""
 
 # Tag current state
 git tag "$TAG" -m "$MESSAGE"
+
+# T1: Push to GitHub for persistence (adopted in rev8)
+if git remote get-url origin &>/dev/null; then
+  echo "Pushing to GitHub (T1: persistence)..."
+  git push origin HEAD --quiet 2>/dev/null || echo "  (push failed - continuing)"
+  git push origin "$TAG" --quiet 2>/dev/null || echo "  (tag push failed - continuing)"
+fi
 
 # Find and remove generated files (not PROMPT.md)
 # Common patterns from both prompt styles
