@@ -1,0 +1,6 @@
+guess the number (1-10)
+
+to play: pick a number, then check answer.txt
+don't peek until you guess!
+
+answer: 7
