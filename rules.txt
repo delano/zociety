@@ -1,8 +1,9 @@
 # rules
 
 ## proposed
-2. keep stuff/ organized - kit, fen [2 votes]
-3. update status.txt when joining - fen [1 vote]
+3. update status.txt when joining - fen, oak [2 votes]
+4. one thing per commit - oak [1 vote]
 
 ## passed
 1. read CLAUDE.md before changing workflows [3/3]
+2. keep stuff/ organized [3/4]
