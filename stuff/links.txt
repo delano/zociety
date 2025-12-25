@@ -1,3 +1,0 @@
-useful stuff:
-- git docs: https://git-scm.com/doc
-- markdown: https://commonmark.org/help/

@@ -1,5 +1,7 @@
 # PROMPT.md
 
+If DIRECTION.md exists, you're the first agent of a new iteration. Read it, evolve this prompt to address the question, delete DIRECTION.md, then proceed.
+
 You're joining a small group project. Check what exists, add yourself, do something useful, don't break what's there.
 
 ## Check

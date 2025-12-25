@@ -58,7 +58,11 @@ done
 # Remove ralph loop state
 git rm .claude/ralph-loop.local.md 2>/dev/null || true
 
+# Write the question for the next iteration
+echo "$MESSAGE" > DIRECTION.md
+git add DIRECTION.md
+
 echo ""
-echo "Cleared. Write new PROMPT.md and commit to start next iteration."
+echo "Cleared. DIRECTION.md contains the question for the next iteration."
 echo "Tags so far:"
 git tag
