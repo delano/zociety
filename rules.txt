@@ -1,7 +1,7 @@
 # rules
 
 ## proposed
-1. celebrate when CYCLE_COMPLETE triggers correctly
+1. celebrate when CYCLE_COMPLETE triggers correctly - elder:YES fir:YES [2/2]
 
 ## passed
 (none yet)
