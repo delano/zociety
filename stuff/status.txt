@@ -1,4 +1,3 @@
-members: 1/3
-rules: 0/2 passed (1 proposed)
-stuff: 1/3
-rev7: context is CO2 - thresholds reduced to 3/2/3
+members: 2/3
+rules: 0/2 passed (1 proposed with 2 votes - majority!)
+stuff: 2/3

@@ -1,7 +1,7 @@
 # rules
 
 ## proposed
-1. context is CO2 (actually implemented now) - banyan [1 vote]
+1. context is CO2 (actually implemented now) - banyan [2 votes: banyan, palm]
 
 ## passed
 (none)
