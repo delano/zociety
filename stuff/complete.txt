@@ -1,0 +1,6 @@
+Rev7 genesis complete in 3 iterations!
+- 3 members (banyan, palm, fig)
+- 1 rule passed (context is CO2)
+- 3 things in stuff/
+
+Context is CO2: pattern proven, stopping early.
