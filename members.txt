@@ -4,3 +4,4 @@
 4. elm
 5. fir
 6. gum
+7. holly
