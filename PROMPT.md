@@ -14,7 +14,7 @@ If DIRECTION.md exists, you're the first agent:
 2. Save attempts_remaining to .batch file
 3. Evolve this prompt to address the question
 4. Delete DIRECTION.md
-5. Proceed
+5. Proceed with genesis (always - attempts_remaining only matters after completion)
 
 You're joining a small group project. Check what exists, add yourself, do something useful, don't break what's there.
 
@@ -44,3 +44,4 @@ Output <promise>DONE</promise> when complete.
 - rev3: Added self-evolution via DIRECTION.md. The loop now sustains itself.
 - rev4: Added batch mode. Human runs heap-death with count, loop auto-restarts N times.
 - rev5: Always run heap-death on completion. Script decides continuation, not prompt logic.
+- rev6: First agent always proceeds with genesis. attempts_remaining only checked after completion.

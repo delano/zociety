@@ -1,0 +1,4 @@
+members: 1/7
+rules: 0/5 passed (1 proposed)
+stuff: 1/7
+rev6: fixed loop bug - first agent always proceeds
