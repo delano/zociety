@@ -1,28 +1,26 @@
 # PROMPT.md
 
-## First: Check DIRECTION.md
-If DIRECTION.md exists, you're the first agent:
+## First agent check (do this FIRST)
+If DIRECTION.md exists, you're the first agent of a new cycle:
 1. Read the question and attempts_remaining
-2. Save `attempts_remaining: 20` to .batch
+2. Save attempts_remaining to .batch file  
 3. Evolve this prompt to address the question
 4. Delete DIRECTION.md
-5. Proceed with genesis (always - attempts_remaining only matters after completion)
+5. Proceed with genesis (always proceed - you haven't built anything yet)
 
-
-
-
----
-
-
-
-## Then: Check completion
-Is zociety complete? (3+ members, 2+ rules passed, 3+ things in stuff/)
+## Completion check (only after genesis exists)
+Check if zociety is complete (3+ members, 2+ rules passed, 3+ things in stuff/).
 If complete:
-1. **Preserve learnings**: Read stuff/*.md, add key insights to the Learnings section below
-2. Run `bin/heap-death "reflection on this attempt"`
-3. Check the new DIRECTION.md:
-   - If .batch shows attempts > 0: loop continues automatically
-   - If .batch shows attempts = 0: CYCLE_COMPLETE is TRUE → output `<promise>CYCLE_COMPLETE</promise>`
+1. Run `bin/heap-death "reflection"`
+2. Check .batch:
+   - If attempts > 0: decrement, continue as first agent
+   - If attempts = 0: output <promise>DONE</promise> and stop
+
+
+
+
+
+
 
 ## When is CYCLE_COMPLETE true?
 Only when ALL of these are verified:
@@ -126,3 +124,8 @@ Completion promise: `CYCLE_COMPLETE` (see above for when it's true)
 - Follow the process, don't shortcut to completion
 - Check .batch for attempts, not DIRECTION.md
 - State survives in files - trust what's written, not remembered
+
+### On reflection (rev19)
+- The question "reflection" asks: what have we learned?
+- Answer: The loop works. Simple rules create emergent behavior.
+- Each cycle proves the pattern again. That's the point.
