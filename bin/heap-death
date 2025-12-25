@@ -1,27 +1,31 @@
 #!/bin/bash
 set -e
 
-# heap-death: Archive current iteration, clear slate for next
-# Usage: bin/heap-death "What question drives the next iteration?"
+# heap-death: Archive current cycle, clear slate for next
+# 
+# Git improvements (rev22):
+#   - Branches per cycle: each cycle preserved as branch
+#   - Orphan learnings branch: insights persist forever
+#   - Git notes: metadata attached to commits
+#   - Structured commits: queryable history
 #
-# Adopted tools (rev8):
-#   T1: git push - implemented below (pushes commits and tags to GitHub)
-#   T4: kagi search - agents may use during iterations (not in this script)
+# Usage: bin/heap-death "What question drives the next cycle?" [batch_count]
 
 MESSAGE="${1:-no reflection provided}"
-# Optional second arg: how many attempts to run before human returns
+BATCH_SIZE="${2:-1}"
 
-# Parse existing tags to find next rev/attempt numbers
+#############################################
+# 1. Parse existing tags to find next rev/attempt
+#############################################
+
 LAST_TAG=$(git tag --sort=-version:refname | head -1)
 
 if [[ -z "$LAST_TAG" ]]; then
   REV=1
   ATTEMPT=1
 else
-  # Extract rev and attempt from tag like rev2-attempt1-iterations7of20
   REV=$(echo "$LAST_TAG" | sed -n 's/rev\([0-9]*\).*/\1/p')
   ATTEMPT=$(echo "$LAST_TAG" | sed -n 's/.*attempt\([0-9]*\).*/\1/p')
-  LAST_REV_IN_TAG=$REV
 
   # Check if PROMPT.md changed since last tag - if so, new rev
   if git diff --quiet "$LAST_TAG" -- PROMPT.md 2>/dev/null; then
@@ -32,54 +36,107 @@ else
   fi
 fi
 
-# Get iteration count from ralph-loop state or git log
+# Get iteration count
 if [[ -f .claude/ralph-loop.local.md ]]; then
   ITERATIONS=$(grep '^iteration:' .claude/ralph-loop.local.md | sed 's/iteration: *//')
   MAX_ITER=$(grep '^max_iterations:' .claude/ralph-loop.local.md | sed 's/max_iterations: *//')
 else
   ITERATIONS=$(git log --oneline | wc -l | tr -d ' ')
-  MAX_ITER="20"
+  MAX_ITER="60"
 fi
 
 TAG="rev${REV}-attempt${ATTEMPT}-iterations${ITERATIONS}of${MAX_ITER}"
+CYCLE_BRANCH="cycle/rev${REV}-attempt${ATTEMPT}"
 
-echo "Tagging: $TAG"
-echo "Message: $MESSAGE"
+echo "╔════════════════════════════════════════╗"
+echo "║           HEAP DEATH                   ║"
+echo "╠════════════════════════════════════════╣"
+echo "║ Tag:      $TAG"
+echo "║ Branch:   $CYCLE_BRANCH"
+echo "║ Question: ${MESSAGE:0:40}..."
+echo "╚════════════════════════════════════════╝"
 echo ""
 
-# Tag current state
-git tag "$TAG" -m "$MESSAGE"
+#############################################
+# 2. Save learning to orphan branch (if insight provided)
+#############################################
 
-# T1: Push to GitHub for persistence (adopted in rev8)
-if git remote get-url origin &>/dev/null; then
-  echo "Pushing to GitHub (T1: persistence)..."
-  git push origin HEAD --quiet 2>/dev/null || echo "  (push failed - continuing)"
-  git push origin "$TAG" --quiet 2>/dev/null || echo "  (tag push failed - continuing)"
+# Extract insight from PROMPT.md learnings section if it changed
+if ! git diff --quiet "$LAST_TAG" -- PROMPT.md 2>/dev/null; then
+  # PROMPT.md changed - there might be new learnings
+  INSIGHT=$(git diff "$LAST_TAG" -- PROMPT.md 2>/dev/null | grep "^+" | grep -v "^+++" | head -5 | sed 's/^+//')
+  if [[ -n "$INSIGHT" ]]; then
+    echo "Saving insight to learnings branch..."
+    bin/save-learning "rev$REV" "$INSIGHT" 2>/dev/null || echo "  (learnings branch not updated)"
+  fi
 fi
 
-# Find and remove generated files (not PROMPT.md)
-# Common patterns from both prompt styles
+#############################################
+# 3. Tag and create cycle branch
+#############################################
+
+echo "Creating cycle branch: $CYCLE_BRANCH"
+git checkout -b "$CYCLE_BRANCH" 2>/dev/null || git checkout "$CYCLE_BRANCH"
+git checkout - --quiet
+
+echo "Tagging: $TAG"
+git tag "$TAG" -m "$MESSAGE"
+
+# Add git note with cycle metadata
+echo "Adding git notes..."
+git notes add -f -m "cycle: rev$REV attempt$ATTEMPT
+genesis_complete: true
+question: $MESSAGE
+batch_remaining: $((BATCH_SIZE - 1))" HEAD 2>/dev/null || true
+
+#############################################
+# 4. Push to GitHub (T1: persistence)
+#############################################
+
+if git remote get-url origin &>/dev/null; then
+  echo "Pushing to GitHub..."
+  git push origin HEAD --quiet 2>/dev/null || echo "  (push failed - continuing)"
+  git push origin "$TAG" --quiet 2>/dev/null || echo "  (tag push failed)"
+  git push origin "$CYCLE_BRANCH" --quiet 2>/dev/null || echo "  (branch push failed)"
+  git push origin refs/notes/commits --quiet 2>/dev/null || echo "  (notes push failed)"
+fi
+
+#############################################
+# 5. Clear generated files
+#############################################
+
+echo "Clearing generated files..."
+
 for f in members.txt rules.txt REGISTRY.md LAWS.md .batch; do
-  [[ -f "$f" ]] && git rm "$f"
+  [[ -f "$f" ]] && git rm -f "$f" --quiet
 done
 
 for d in stuff artifacts; do
-  [[ -d "$d" ]] && git rm -r "$d"
+  [[ -d "$d" ]] && git rm -rf "$d" --quiet
 done
 
-# Remove ralph loop state
-git rm .claude/ralph-loop.local.md 2>/dev/null || true
+git rm -f .claude/ralph-loop.local.md --quiet 2>/dev/null || true
 
-# Write the question for the next iteration
-# Format: attempt N of M remaining, then the question
-BATCH_SIZE="${2:-1}"
+#############################################
+# 6. Write DIRECTION.md for next cycle
+#############################################
+
 cat > DIRECTION.md << EOF
 attempts_remaining: $((BATCH_SIZE - 1))
 question: $MESSAGE
 EOF
 git add DIRECTION.md
 
+git commit -m "[heap-death] $TAG: $MESSAGE" --quiet
+
 echo ""
-echo "Cleared. DIRECTION.md contains the question for the next iteration."
-echo "Tags so far:"
-git tag
+echo "╔════════════════════════════════════════╗"
+echo "║ Cycle archived. Ready for next.        ║"
+echo "╠════════════════════════════════════════╣"
+echo "║ Branches: git branch -a | grep cycle/  ║"
+echo "║ Learnings: bin/read-learnings          ║" 
+echo "║ Notes: git notes show                  ║"
+echo "╚════════════════════════════════════════╝"
+echo ""
+echo "Tags:"
+git tag | tail -5

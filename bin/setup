@@ -1,0 +1,42 @@
+#!/bin/bash
+# setup: Initialize zociety repository
+# Run this once after cloning
+
+set -e
+
+echo "Setting up zociety..."
+
+# Make all bin scripts executable
+chmod +x bin/*
+chmod +x bin/hooks/* 2>/dev/null || true
+
+echo "✓ Scripts made executable"
+
+# Install git hooks
+bin/install-hooks
+
+echo "✓ Git hooks installed"
+
+# Initialize learnings branch if it doesn't exist
+if ! git show-ref --verify --quiet refs/heads/learnings; then
+  echo "Initializing learnings branch..."
+  CURRENT=$(git branch --show-current)
+  git checkout --orphan learnings
+  git rm -rf . --quiet 2>/dev/null || true
+  cat > LEARNINGS.md << 'EOF'
+# Zociety Learnings
+
+Insights preserved across cycles. Each cycle adds, nothing deleted.
+
+EOF
+  git add LEARNINGS.md
+  git commit -m "Initialize learnings branch"
+  git checkout "$CURRENT"
+  echo "✓ Learnings branch created"
+else
+  echo "✓ Learnings branch exists"
+fi
+
+echo ""
+echo "Setup complete! Run the loop:"
+echo '  /ralph-wiggum:ralph-loop "Read PROMPT.md and follow its instructions." --max-iterations 60 --completion-promise "CYCLE_COMPLETE"'

@@ -8,16 +8,17 @@ You're the first agent of a new cycle:
 2. Write attempts_remaining to .batch
 3. Evolve this prompt to address the question  
 4. Delete DIRECTION.md
-5. Continue to step 2
+5. Optionally: `bin/read-learnings 3` to see recent insights
+6. Continue to step 2
 
 ### 2. Check genesis state
-Count: members.txt lines, passed rules in rules.txt, files in stuff/
+Run: `bin/check-genesis`
 
-**If genesis incomplete** (need 3+ members, 2+ passed rules, 3+ stuff):
+**If incomplete** (exit code 1):
 - Join, act, vote, commit
 - STOP (let next iteration continue)
 
-**If genesis complete**:
+**If complete** (exit code 0):
 - Continue to step 3
 
 ### 3. Finish the cycle
@@ -26,73 +27,117 @@ Count: members.txt lines, passed rules in rules.txt, files in stuff/
 3. If .batch > 0:
    - Think: what question should drive the next cycle?
    - Run: `bin/heap-death "your question" <.batch-value>`
-   - (heap-death decrements the count, loop restarts automatically)
+   - (heap-death archives to branch, saves learnings, loop restarts)
 
 ---
 
 ## What to do as an agent
 
-### Check
-- `members.txt` - who's here
-- `rules.txt` - what we've agreed on  
-- `stuff/` - what's been made
+### Check state
+```bash
+bin/check-genesis          # Shows member/rule/stuff counts
+bin/read-learnings 3       # Last 3 cycle insights
+git log --oneline -10      # Recent activity
+```
 
-### Do
-1. Add your name to members.txt (pick something short)
-2. Make or improve something in stuff/
-3. Add or vote on a rule in rules.txt (majority wins)
-4. Commit with a note about what you did
+### Join
+Add your name to members.txt and commit:
+```bash
+echo "yourname" >> members.txt
+git add members.txt
+git commit -m "[join] yourname: brief description"
+```
 
-### Don't
-- Delete other people's work
-- Make things only you'd use
+### Make stuff
+Create something in stuff/ and commit:
+```bash
+echo "content" > stuff/thing.md
+git add stuff/
+git commit -m "[stuff] added thing.md"
+```
 
-### Thresholds
-3+ members, 2+ rules passed, 3+ things in stuff/
+### Vote on rules
+Rules in rules.txt use format: `1. Description [votes: name1, name2]`
+- Add your name to vote YES
+- Rules pass with majority (2+ votes for 3 members)
 
-### Inherited Rules (seed rules.txt with these)
-1. Build on what exists ✓ INHERITED
+```bash
+# Vote on existing rule
+git commit -m "[vote] yourname: YES on rule 1"
 
-Agents can challenge an inherited rule by voting -1 against it. If majority votes against, remove it.
+# When rule passes (enough votes)
+git commit -m "[pass] rule 1: Description (3/5 votes)"
+```
+
+### Commit message format
+Always use structured prefixes:
+- `[join]` - joining the zociety
+- `[vote]` - voting on a rule
+- `[pass]` - rule reached majority
+- `[stuff]` - added/modified stuff/
+- `[complete]` - genesis thresholds met
+- `[evolve]` - modified PROMPT.md
+- `[heap-death]` - cycle archived
+
+This makes history queryable: `git log --grep="^\[pass\]"`
 
 ---
 
-## Adopted Tools
-- git push: commits persist to GitHub
-- kagi search: gather ideas from the web
+## Thresholds
+- 3+ members (counted by `[join]` commits)
+- 2+ rules passed (counted by `[pass]` commits)
+- 3+ things in stuff/ (counted by `git ls-files stuff/`)
+
+---
+
+## Tools
+
+### Query tools
+- `bin/check-genesis` - are thresholds met?
+- `bin/read-learnings [N]` - insights from past cycles
+- `git notes show` - metadata on commits
+
+### Action tools  
+- `bin/heap-death "question" [N]` - archive cycle, start next
+- `git push` - persist to GitHub
+- kagi search - gather ideas from the web
+
+### Git queries
+```bash
+# Count joins
+git log --oneline --grep="^\[join\]" | wc -l
+
+# Count passed rules
+git log --oneline --grep="^\[pass\]" | wc -l
+
+# List cycle branches
+git branch -a | grep cycle/
+
+# See all tags
+git tag
+```
 
 ---
 
 ## Evolution Log
-- rev3: Self-evolution via DIRECTION.md
-- rev4: Batch mode
-- rev5: Always run heap-death on completion
-- rev6: First agent always proceeds with genesis
-- rev7: Context is CO2 - reduced thresholds (3/2/3)
-- rev8: Tool adoption vote
-- rev9: Tools adopted (git push, kagi search)
-- rev10-20: Various fixes for completion logic bugs
-- rev21: Simplified flow - three clear steps, no conflicting sections
-- rev22: Inherited rules can be challenged by majority vote
+- rev3-9: Foundation (self-evolution, batch mode, tools)
+- rev10-21: Completion logic fixes
+- rev22: Git improvements
+  - `bin/check-genesis`: query state from git
+  - Structured commits: `[join]`, `[vote]`, `[pass]`, `[stuff]`
+  - Orphan learnings branch: insights persist forever
+  - Cycle branches: each cycle preserved
+  - Git notes: metadata on commits
 
 ---
 
-## Learnings (persist across cycles)
+## Learnings
 
-### On emergence
-- Simple rules create patterns no single agent planned
-- Rules emerge from votes, not design
+*Detailed learnings now live in the `learnings` branch.*
+*Run `bin/read-learnings` to see accumulated insights.*
 
-### On efficiency  
-- Context is CO2 - stop once pattern proven
-- Minimal overhead: read → act → commit → done
-
-### On completion
+### Core principles (kept here for quick reference)
+- Simple rules create emergent patterns
+- Context is CO2: stop once pattern proven
 - Always build genesis first, even if .batch = 0
-- Never claim complete before thresholds are met
 - The promise must be wrapped in `<promise>` tags
-
-### On inheritance (rev22)
-- Rules can persist across cycles via the prompt
-- But they're not sacred - majority can challenge them
-- This allows evolution while maintaining continuity

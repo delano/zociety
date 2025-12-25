@@ -13,62 +13,89 @@ Note: It's "zociety" not "society".
 ## The Loop
 
 ```
-/ralph-wiggum:ralph-loop "Read PROMPT.md and follow its instructions." --max-iterations 20 --completion-promise "CYCLE_COMPLETE"
+/ralph-wiggum:ralph-loop "Read PROMPT.md and follow its instructions." --max-iterations 60 --completion-promise "CYCLE_COMPLETE"
 ```
 
 Each iteration:
 1. Agent reads PROMPT.md
-2. Checks state (members, rules, stuff)
-3. Joins, acts, legislates, commits
-4. Loop continues until completion criteria met
+2. Runs `bin/check-genesis` to see state
+3. Joins, acts, legislates, commits (with structured messages)
+4. Loop continues until genesis complete + .batch = 0
+
+## Git Structure (rev22)
+
+### Structured Commits
+All commits use prefixes for queryable history:
+- `[join]` - agent joining
+- `[vote]` - voting on rule
+- `[pass]` - rule reached majority
+- `[stuff]` - added to stuff/
+- `[complete]` - genesis done
+- `[evolve]` - PROMPT.md changed
+- `[heap-death]` - cycle archived
+
+Query examples:
+```bash
+git log --oneline --grep="^\[join\]"   # all joins
+git log --oneline --grep="^\[pass\]"   # all passed rules
+```
+
+### Branches
+- `main` - current cycle (cleared between cycles)
+- `cycle/rev{N}-attempt{N}` - archived cycles
+- `learnings` - orphan branch with accumulated insights
+
+### Git Notes
+Metadata attached to commits:
+```bash
+git notes show HEAD   # see cycle metadata
+git notes list        # all annotated commits
+```
+
+## Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `bin/check-genesis` | Query if thresholds met (exit 0 = yes) |
+| `bin/heap-death` | Archive cycle, create branch, clear state |
+| `bin/save-learning` | Add insight to learnings branch |
+| `bin/read-learnings` | Display accumulated insights |
+| `bin/install-hooks` | Set up commit message validation |
+| `bin/validate-state` | Check state/message validity |
 
 ## Heap Death
 
-When an iteration completes, the human runs:
+When genesis completes, the completing agent runs:
 
-```
-bin/heap-death "The question that prompted this reflection"
-```
-
-Or to run N attempts before returning:
-
-```
-bin/heap-death "The question" 5
+```bash
+bin/heap-death "Question for next cycle" [batch_count]
 ```
 
 This:
-- Tags the current state with rev/attempt/iteration numbers
-- Clears generated files (members.txt, rules.txt, stuff/, .batch, etc.)
-- Writes DIRECTION.md with the question and attempts_remaining count
-
-## Batch Mode
-
-When attempts_remaining > 0, the loop auto-restarts after genesis completes:
-1. First agent saves attempts_remaining to .batch
-2. Genesis completes
-3. Next iteration sees complete state + .batch
-4. Auto-runs heap-death with decremented count
-5. Repeats until attempts_remaining = 0, then human returns
-
-## Evolution
-
-The first agent of a new iteration checks for DIRECTION.md. If present:
-1. Read the question
-2. Evolve PROMPT.md to address it
-3. Delete DIRECTION.md
-4. Proceed with the new rules
+1. Creates cycle branch (`cycle/rev{N}-attempt{N}`)
+2. Tags current state
+3. Saves any new learnings to orphan branch
+4. Adds git notes with metadata
+5. Pushes everything to GitHub
+6. Clears generated files
+7. Writes DIRECTION.md with question + attempts_remaining
 
 ## Files
 
-- `PROMPT.md` - Instructions for agents (evolves between iterations)
+### Permanent
+- `PROMPT.md` - Instructions for agents (evolves)
+- `CLAUDE.md` - This file
+- `bin/*` - Scripts
+
+### Per-cycle (cleared by heap-death)
+- `members.txt` - Who joined this cycle
+- `rules.txt` - Rules proposed/passed this cycle
+- `stuff/` - Things made this cycle
+- `.batch` - Remaining attempts counter
 - `DIRECTION.md` - Question from heap-death (consumed by first agent)
-- `bin/heap-death` - Archive script
-- Generated: `members.txt`, `rules.txt`, `stuff/`
 
-## Tags
-
-Format: `rev{N}-attempt{N}-iterations{N}of{N}`
-
-- rev increments when PROMPT.md changes
-- attempt increments when same prompt is re-run
-- Message contains the heap-death question
+### Git-based (permanent)
+- Tags: `rev{N}-attempt{N}-iterations{N}of{N}`
+- Branches: `cycle/rev{N}-attempt{N}`
+- Orphan branch: `learnings`
+- Notes: metadata on heap-death commits
