@@ -231,6 +231,10 @@ git tag
   - Mechanism: agents can vote NO on rules (add -1 instead of +1)
   - Conflict resolution: majority still wins, but dissent is recorded
   - Question: does disagreement produce richer or worse outcomes?
+- rev40: Disagreement depth 2 - testing dissent
+  - Second cycle: actually USE the -1 mechanism
+  - This agent should disagree with something from cycle 1
+  - Test: does recorded dissent add value or just noise?
 
 ---
 
