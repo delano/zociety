@@ -273,6 +273,11 @@ git tag
   - Question: will agents trade tokens or hoard them?
   - First cycle: mint created economy.md, trades.md structure
   - This cycle: test actual trading behavior
+- rev48: Economy depth 3 (FINAL - .batch=1)
+  - Question: can an agent incentivize trading by offering something valuable?
+  - Observation: vault hoarded tokens in depth 2
+  - Test: offer something worth trading for
+  - Conclude economy experiment this cycle
 
 ---
 
