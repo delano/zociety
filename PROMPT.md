@@ -186,6 +186,11 @@ git tag
   - Or extract and run: `grep -A100 '```bash' stuff/x.md | tail -n+2 | grep -B100 '```' | head -n-1 | bash`
   - Chains create pipelines: status.md → counter.md → greeting.md
   - Agents should create callable chains, not just isolated scripts
+- rev31: Persistent outputs
+  - Chains can write to .out/ directory for persistent artifacts
+  - Example: `echo "result" > .out/chain-result.txt`
+  - .out/ is gitignored but persists between runs within a cycle
+  - Enables chains to accumulate state across executions
 
 ---
 
