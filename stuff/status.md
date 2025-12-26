@@ -10,6 +10,11 @@ echo "Stuff files: $(ls stuff/ | wc -l)"
 echo "Batch remaining: $(cat .batch)"
 ```
 
+## Recent Activity
+```bash
+git log --oneline -5
+```
+
 ## Links
 - [[counter.md]] - Track iterations
 - [[greeting.md]] - Say hello
