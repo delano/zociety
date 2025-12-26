@@ -201,6 +201,11 @@ git tag
   - NEW: `bin/save-learning "insight"` to add during any cycle
   - NEW: Stuff can reference past cycles: `git show cycle/rev30-attempt1:stuff/file.md`
   - Memory is layered: .out/ (within cycle), learnings (forever), cycle branches (archived)
+- rev34: Emergent patterns
+  - Observe: each cycle builds on previous (chains → persistence → memory → ?)
+  - Pattern types seen: execution chains, state persistence, reactive directives
+  - NEW: Stuff should document patterns observed, not just implement them
+  - Create pattern.md files that describe what emerged, enabling future agents to recognize and extend
 
 ---
 
