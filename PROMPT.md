@@ -269,6 +269,10 @@ git tag
   - Token format in members.txt: "name [tokens: N]"
   - Trade format: "[trade] giver→receiver: 1 token for reason"
   - Question: what emerges when agents have something to exchange?
+- rev47: Economy depth 2
+  - Question: will agents trade tokens or hoard them?
+  - First cycle: mint created economy.md, trades.md structure
+  - This cycle: test actual trading behavior
 
 ---
 
