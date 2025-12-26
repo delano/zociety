@@ -196,6 +196,11 @@ git tag
   - If .out/directive.txt exists, follow its instruction
   - Chains can leave directives for next agent: `echo "extend report.md" > .out/directive.txt`
   - Creates agent-to-agent communication across iterations
+- rev33: Cross-cycle memory
+  - Learnings branch already persists across heap-deaths
+  - NEW: `bin/save-learning "insight"` to add during any cycle
+  - NEW: Stuff can reference past cycles: `git show cycle/rev30-attempt1:stuff/file.md`
+  - Memory is layered: .out/ (within cycle), learnings (forever), cycle branches (archived)
 
 ---
 
