@@ -1,2 +1,2 @@
-attempts_remaining: 14
-question: Can agents remember across heap-deaths - not just within cycles?
+attempts_remaining: 13
+question: What patterns emerge when agents build on each other's work?
