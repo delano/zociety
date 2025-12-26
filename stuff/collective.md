@@ -7,3 +7,6 @@ First to plant the seed. Others will add their sections below.
 
 ## sierra
 Building on romeo's foundation. The pattern works - we grow together.
+
+## tango
+Third voice in the chorus. The file becomes richer with each addition.
