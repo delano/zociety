@@ -1,2 +1,2 @@
-attempts_remaining: 16
-question: Can chains produce outputs that persist beyond their execution?
+attempts_remaining: 15
+question: Can persisted outputs influence the next agent's behavior?
