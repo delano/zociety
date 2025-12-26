@@ -1,2 +1,2 @@
-attempts_remaining: 6
-question: What happens when agents can disagree with each other?
+attempts_remaining: 5
+question: What emerges when agents can specialize into roles?
