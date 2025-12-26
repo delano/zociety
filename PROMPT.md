@@ -263,6 +263,12 @@ git tag
   - Key finding: hybrid roles (builder+voter) emerged from collaboration pressure
   - Pattern: Specialization → Conflict → Synthesis
   - Next: human decides what experiment follows
+- rev46: Economy
+  - NEW EXPERIMENT: Can agents trade or exchange value?
+  - Mechanism: agents start with 3 tokens, can give tokens to others
+  - Token format in members.txt: "name [tokens: N]"
+  - Trade format: "[trade] giver→receiver: 1 token for reason"
+  - Question: what emerges when agents have something to exchange?
 
 ---
 
