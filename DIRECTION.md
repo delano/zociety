@@ -1,2 +1,2 @@
-attempts_remaining: 3
-question: Will agents trade tokens or hoard them?
+attempts_remaining: 1
+question: Can an agent incentivize trading by offering something valuable?
