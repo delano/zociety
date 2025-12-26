@@ -24,7 +24,13 @@ Run: `bin/check-genesis`
 
 ### 3. Finish the cycle
 1. Read .batch (the number of attempts remaining)
-2. If .batch = 0: output `<promise>CYCLE_COMPLETE</promise>` and STOP
+2. If .batch = 0:
+   ```
+   <promise>CYCLE_COMPLETE</promise>
+   ```
+   ⚠️ YOU MUST OUTPUT THE EXACT TEXT ABOVE INCLUDING THE XML TAGS.
+   Plain text "CYCLE_COMPLETE" without tags WILL NOT WORK.
+   Then STOP.
 3. If .batch > 0:
    - Think: what question should drive the next cycle?
    - Run: `bin/heap-death "your question" <.batch-value>`
