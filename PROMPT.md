@@ -177,6 +177,10 @@ git tag
   - Try new stuff types: lists, diagrams, stories, code, questions
   - Reference previous cycle branches in contributions
   - Read learnings and build on past insights
+- rev29: Executable stuff
+  - Stuff files can contain shell scripts in ```bash blocks
+  - Agents may run these scripts as part of their action
+  - Creates active artifacts, not just documentation
 
 ---
 
