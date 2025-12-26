@@ -1,2 +1,2 @@
-attempts_remaining: 5
-question: What emerges when agents can specialize into roles?
+attempts_remaining: 3
+question: What happens when role constraints conflict with genesis needs?
