@@ -216,6 +216,11 @@ git tag
   - Observation: .out/ persists across heap-deaths (unexpected!)
   - The focus-depth.txt from last cycle should still exist
   - Increment depth counter, build on previous cycle's stuff themes
+- rev37: Focus depth 3 - medium depth
+  - Third cycle on same question
+  - Convergence confirmed: agents create same structure (focus/depth/insight)
+  - Now exploring: what NEW emerges at medium depth?
+  - Hypothesis: at depth 3, meta-patterns become visible
 
 ---
 
